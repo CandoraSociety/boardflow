@@ -5,12 +5,21 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-// Add page imports here
+import Layout from '@/components/Layout';
+import Dashboard from '@/pages/Dashboard';
+import Meetings from '@/pages/Meetings';
+import AgendaBuilder from '@/pages/AgendaBuilder';
+import MinutesTaker from '@/pages/MinutesTaker';
+import Documents from '@/pages/Documents';
+import BoardMembers from '@/pages/BoardMembers';
+import Onboarding from '@/pages/Onboarding';
+import StrategicPlan from '@/pages/StrategicPlan';
+import BoardAssistant from '@/pages/BoardAssistant';
+import { Toaster as SonnerToaster } from 'sonner';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
-  // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
@@ -19,29 +28,35 @@ const AuthenticatedApp = () => {
     );
   }
 
-  // Handle authentication errors
   if (authError) {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
       navigateToLogin();
       return null;
     }
   }
 
-  // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
+      <Route element={<Layout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/meetings" element={<Meetings />} />
+        <Route path="/meetings/new" element={<Meetings />} />
+        <Route path="/meetings/:id/agenda" element={<AgendaBuilder />} />
+        <Route path="/meetings/:id/minutes" element={<MinutesTaker />} />
+        <Route path="/documents" element={<Documents />} />
+        <Route path="/members" element={<BoardMembers />} />
+        <Route path="/onboarding" element={<Onboarding />} />
+        <Route path="/strategic-plan" element={<StrategicPlan />} />
+        <Route path="/board-assistant" element={<BoardAssistant />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
 
-
 function App() {
-
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
@@ -49,6 +64,7 @@ function App() {
           <AuthenticatedApp />
         </Router>
         <Toaster />
+        <SonnerToaster position="top-right" richColors />
       </QueryClientProvider>
     </AuthProvider>
   )
