@@ -42,14 +42,14 @@ export default function Layout() {
               to={path}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all text-gray-300",
                 active
                   ? "bg-accent text-white font-medium"
-                  : "text-sidebar-foreground hover:bg-primary hover:text-white"
+                  : "hover:bg-slate-800 hover:text-white"
               )}
             >
               <Icon className="w-4.5 h-4.5 shrink-0" size={18} />
-              {!collapsed && <span>{label}</span>}
+              {!collapsed && <span className="text-white">{label}</span>}
             </Link>
           );
         })}
