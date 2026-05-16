@@ -45,7 +45,7 @@ export default function Layout() {
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all",
                 active
                   ? "bg-accent text-accent-foreground font-medium"
-                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-white"
+                  : "text-sidebar-foreground hover:bg-primary hover:text-primary-foreground"
               )}
             >
               <Icon className="w-4.5 h-4.5 shrink-0" size={18} />
