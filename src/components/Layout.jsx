@@ -75,7 +75,7 @@ export default function Layout() {
 
       {/* Mobile sidebar */}
       <aside className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-sidebar transition-transform duration-200 lg:hidden",
+        "fixed inset-y-0 left-0 z-50 w-64 bg-black transition-transform duration-200 lg:hidden",
         mobileOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <SidebarContent />
@@ -83,7 +83,7 @@ export default function Layout() {
 
       {/* Desktop sidebar */}
       <aside className={cn(
-        "hidden lg:flex flex-col bg-sidebar transition-all duration-200 shrink-0",
+        "hidden lg:flex flex-col bg-black transition-all duration-200 shrink-0",
         collapsed ? "w-16" : "w-60"
       )}>
         <SidebarContent />
