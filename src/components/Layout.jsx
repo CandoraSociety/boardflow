@@ -45,7 +45,7 @@ export default function Layout() {
                 "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all text-gray-300",
                 active
                   ? "bg-accent text-white font-medium"
-                  : "hover:bg-slate-800 hover:text-white"
+                  : "hover:bg-primary hover:text-white"
               )}
             >
               <Icon className="w-4.5 h-4.5 shrink-0" size={18} />
