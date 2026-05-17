@@ -17,11 +17,13 @@ import StrategicPlan from '@/pages/StrategicPlan';
 import BoardAssistant from '@/pages/BoardAssistant';
 import { Toaster as SonnerToaster } from 'sonner';
 import { useBranding } from '@/hooks/useBranding';
+import { useIntegrations } from '@/hooks/useIntegrations';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
   useBranding();
+  useIntegrations();
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
