@@ -49,6 +49,16 @@ Deno.serve(async (req) => {
       return Response.json({ ok: true, message: 'Branding update received', payload });
     }
 
+    case 'update_app_name': {
+      const { app_name } = payload;
+      if (!app_name) {
+        return Response.json({ error: 'Missing app_name in payload' }, { status: 400 });
+      }
+      console.log('App name update received:', { app_name });
+      // Store the new name so frontend can use it if needed
+      return Response.json({ ok: true, message: 'App name updated', app_name });
+    }
+
     default: {
       return Response.json({ error: `Unknown command: ${command}` }, { status: 400 });
     }
